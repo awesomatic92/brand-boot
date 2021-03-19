@@ -2,7 +2,6 @@ package com.oraclejava.boot.interceptor;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +18,6 @@ import com.oraclejava.boot.annotation.Authorize;
 import com.oraclejava.boot.annotation.NoAuth;
 import com.oraclejava.boot.dto.Login;
 
-import oracle.net.ano.Ano;
-
 public class LoginInterceptor implements HandlerInterceptor{
 	
 	private final static Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
@@ -29,7 +26,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.debug("PreHandle process...");
 		if(handler instanceof HandlerMethod) {
 			
 			//@NoAuth가 붙어있는지 체크해서 붙어있으면 무사 통과
@@ -47,7 +43,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 			HttpSession session = request.getSession();
 			try {
 				Login login = (Login)session.getAttribute("login");
-				logger.debug("requestURI=" + request.getRequestURI());
 				if(login.getLoginType() == null || login.getLoginType().equals("")) {
 					response.sendRedirect("/login");
 					return false;
@@ -83,13 +78,11 @@ public class LoginInterceptor implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		logger.debug("PostHandle process...");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		logger.debug("AfterCompletion process...");
 	}
 	
 }

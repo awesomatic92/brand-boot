@@ -12,7 +12,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class BrandBootApplication extends SpringBootServletInitializer {
 	
 	
-	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(BrandBootApplication.class);

@@ -114,6 +114,7 @@ html, body {
 	
 	/* 슬라이드 영역 - max-width 크기를 조절해주면 됩니다*/
 	.section .slidewrap {max-width:1200px;margin:0 auto;overflow:hidden;position:relative;}
+	.section .slidewrap {max-height:700px;margin:0 auto;overflow:hidden;position:relative;}
 	.section .slidelist {white-space:nowrap;font-size:0;}
 	.section .slidelist > li {display:inline-block;vertical-align:middle;width:100%;transition:all .5s;}
 	.section .slidelist > li > a {display:block;position:relative;}

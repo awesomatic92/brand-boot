@@ -80,6 +80,7 @@ dependencies {
 	
 	implementation 'org.jsoup:jsoup:1.13.1'
 	
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
 	
 }
 
@@ -122,3 +123,5 @@ clean {
 war {
 	archiveName("brand-boot.war")
 }
+
+
