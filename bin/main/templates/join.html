@@ -10,33 +10,28 @@
 
 <script type="text/javascript">
 	function checkValue() {
-		if(!document.userInfo.id.value){
+		if(!document.userInfo.userId.value){
 			alert("아이디를 입력하세요.");
 			return false;
 		}
 		
-		if(!document.userInfo.password.value){
+		if(!document.userInfo.userPass.value){
 			alert("비밀번호를 입력하세요.");
 			return false;
 		}
 		
-		if(!document.userInfo.passwordcheck.value){
+		if(!document.userInfo.userPassCheck.value){
 			alert("비밀번호가 동일한지 확인해 주세요.");
 			return false;
 		}
 		
-		if(document.userInfo.password.value != document.userInfo.passwordcheck.value){
+		if(document.userInfo.userPass.value != document.userInfo.userPassCheck.value){
 			alert("비밀번호를 동일하게 입력하세요.");
 			return false;
 		}
 		
-		if(!document.userInfo.name.value){
+		if(!document.userInfo.userName.value){
 			alert("이름을 입력해 주세요.");
-			return false;
-		}
-		
-		if(!document.userInfo.birth.value){
-			alert("생년월일을 입력해 주세요.");
 			return false;
 		}
 		
@@ -75,55 +70,39 @@
 	
 	<div id="contents">
 	<div id="wrap">
-		<form method="post" action="../pro/JoinPro.jsp"
+		<form method="post" action=""
 			  name="userInfo" onsubmit="return checkValue()">
 		<table>
         	<tr>
-	            <td id="title">아이디</td>
+	            <td id="userId">아이디</td>
 	            <td>
-	                <input type="text" name="id" maxlength="50">
+	                <input type="text" name="userId" maxlength="50">
 	                <input type="button" value="중복확인" >    
 	            </td>
             </tr>
                         
             <tr>
-                <td id="title">비밀번호</td>
+                <td id="userPass">비밀번호</td>
                 <td>
-                    <input type="password" name="password" maxlength="50">
+                    <input type="password" name="userPass" maxlength="50">
                 </td>
             </tr>
             
             <tr>
-                <td id="title">비밀번호 확인</td>
+                <td id="userPassCheck">비밀번호 확인</td>
                 <td>
-                    <input type="password" name="passwordcheck" maxlength="50">
+                    <input type="password" name="userPassCheck" maxlength="50">
                 </td>
             </tr>
                 
             <tr>
-                <td id="title">이름</td>
+                <td id="userName">이름</td>
                 <td>
-                    <input type="text" name="name" maxlength="50">
+                    <input type="text" name="userName" maxlength="50">
                 </td>
             </tr>
-                
             <tr>
-                <td id="title">성별</td>
-                <td>
-                    <input type="radio" name="gender" value="남" checked>남
-                    <input type="radio" name="gender" value="여" checked>여
-                </td>
-            </tr>
-                
-            <tr>
-                <td id="title">생일</td>
-                <td>
-                    <input type="date" name="birth">
-                </td>
-            </tr>
-                
-            <tr>
-                <td id="title">이메일</td>
+                <td id="email">이메일</td>
                 <td id=join>
 					<input type="text" name="email1" value="이메일" onfocus="this.value='';">   @
 					<input type="text" name="email2" value="" disabled >
@@ -142,7 +121,7 @@
 	</div>
 	</div>
    			<div align="middle">
-       		<input type="submit" value="가입"/><input type="button" value="취소">
+       		<input onclick="location.href='/join'" type="submit" value="가입"/><input type="button" value="취소">
  			</div>
 	<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
