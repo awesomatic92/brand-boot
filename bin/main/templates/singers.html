@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Singers</title>
+<!-- 절대 경로 명시하기 위해 th 서술, 접근을 위해 @{} -->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script>
+	$(function(){
+		$("#search_btn").click(function(e){
+			e.preventDefault();
+			//alert("click" + $("#search").val());
+			location.href="http://localhost:7080/singers?search=" + $("#search").val();
+		});
+		$("#search").keydown(function(key) {
+			if (key.keyCode ==13) {
+				location.href="http://localhost:7080/singers?search=" + $("#search").val();
+			}
+		})
+	});
+</script>
+
+</head>
+<body>
+
+	<div th:replace="~{fragments/header :: header}">Header</div>
+	
+	<div class="container">
+		<h1>Singer List</h1>
+		<div class="d-flex justify-content-center h-100" style="text-align: right">
+	    	
+	    	<div class="searchbar">
+	    		<button style="float: left" type="button" value="글쓰기" onclick="location.href='/singers/new'">글쓰기</button>
+	    		<input class="search_input" type="text" name="search" id="search" placeholder="Search...">
+	          	<a href="#" class="search_icon" id="search_btn"><i class="fas fa-search"></i></a>
+	        </div>
+	        				
+	    </div>
+		<div th:if="${not #lists.isEmpty(singers)}">
+		<form action="/singers/delete" method="post" th:action="@{/singers/delete}">
+			<table class="table table-striped">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Description</th>
+					<th>상세보기</th>
+					<th>수정하기</th>
+					<th><button type="submit" class="btn-danger">삭제</button>
+				</tr>
+				<tr th:each="s : ${singers}">
+					<td th:text="${s.firstName}">TS</td>
+					<td th:text="${s.lastName}">B</td>
+					<td th:utext="${s.description}">안녕하세요 BTS입니다</td>
+					<td><a th:href="${'singers/' + s.id}">보기</a></td>
+					<td><a th:href="${'singers/edit/' + s.id}">수정</a></td>
+					<td>
+						<input type="checkbox" name="sid" th:value="${s.id}"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+			<nav style="text-align: center;">
+				<ul class="pagination">
+					<li class="" th:classappend="${nowBlock <= 1} ? 'disabled' : ''" >					
+						<a href="#" th:href="${'singers?page=' + (beginIndex-1)}" aria-label="First">
+							<span aria-hidden="true">&lt;&lt;</span>
+						</a>
+					</li>
+					<li class="" th:classappend="${currentIndex == 1} ? 'disabled' : ''">
+						<a href="#" th:href="${'singers?page=' + (currentIndex-1)}" aria-label="Previous">
+							<span aria-hidden="true">&lt;</span>
+						</a>
+					</li>
+					<li th:each="i : ${#numbers.sequence(beginIndex,endIndex)}" 
+						class="" th:classappend="${currentIndex == i} ? 'active' : ''">
+						<a th:href="${'singers?page=' + i}">
+							<span th:text="${i}">1</span>
+						</a>
+					</li>
+					<li class="" th:classappend="${currentIndex == pageNum} ? 'disabled' : ''">
+						<a href="#" th:href="${'singers?page=' + (currentIndex+1)}" aria-label="Next">
+							<span aria-hidden="true">&gt;</span>
+						</a>
+					</li>
+					<li class="" th:classappend="${nowBlock >= blockNum} ? 'disabled' : ''">
+						<a href="#" th:href="${'singers?page=' + (endIndex+1)}" aria-label="Last">
+							<span aria-hidden="true">&gt;&gt;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</div>
+</body>
+</html>

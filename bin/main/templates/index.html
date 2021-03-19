@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Singer Boot</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1//css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{css/indexcss.css}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="crawlingUrl.js"></script>
+
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}">Header</div>
+	
+	<h1 align="middle">Street Fashion Brand</h1>
+
+	<div class="section">
+		<input type="radio" name="slide" id="slide01" checked>
+		<input type="radio" name="slide" id="slide02">
+		<input type="radio" name="slide" id="slide03">
+		<div class="slidewrap">
+			<ul class="slidelist">
+				<li>
+					<a>
+						<img src="images/bn1.png">
+					</a>
+				</li>
+				<li>
+					<a>
+						<img src="images/bn2.png">
+					</a>
+				</li>
+				<li>
+					<a>
+						<img src="images/bn3.png">
+					</a>
+				</li>
+			</ul>
+	
+			<div class="slide-control">
+				<div class="control01">
+					<label for="slide03" class="left"></label>
+					<label for="slide02" class="right"></label>
+				</div>
+				<div class="control02">
+					<label for="slide01" class="left"></label>
+					<label for="slide03" class="right"></label>
+				</div>
+				<div class="control03">
+					<label for="slide02" class="left"></label>
+					<label for="slide01" class="right"></label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<table class="logotable">
+			<tr>
+				<td class="logo">
+			    	<a th:href="${'/supreme'}">
+			    	<img class=brandlogo th:src="@{'images/1.png'}">
+			    	</a>
+			    </td>
+			    <td class="logo">
+	   	        	<a href="">
+				    <img class=brandlogo th:src="@{'images/2.png'}">
+				    </a>
+				</td>
+				<td class="logo">
+				    <a href="">
+				    <img class=brandlogo th:src="@{'images/3.png'}">
+				    </a>
+				</td>
+				<td class="logo">
+				   	<a th:href="${'/supreme'}">
+				  	<img class=brandlogo th:src="@{'images/4.png'}">
+				   	</a>
+				</td>
+				<td class="logo">
+				    <a href="">
+				    <img class=brandlogo th:src="@{'images/5.png'}">
+				    </a>
+				</td>
+				<td class="logo">
+				    <a href="">
+				    <img class=brandlogo th:src="@{'images/6.png'}">
+				    </a>
+				</td>
+				<td class="logo">
+				  	<a th:href="${'/supreme'}">
+				   	<img class=brandlogo th:src="@{'images/7.png'}">
+				   	</a>
+				</td>
+				<td class="logo">
+				    <a href="">
+				    <img class=brandlogo th:src="@{'images/8.png'}">
+				    </a>
+				</td>
+			</tr>
+		</table>
+		
+		<div>
+			<table id="table1" class="table table-striped">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Description</th>
+				</tr>
+				<tr th:each="s : ${singers}">
+					<td th:text="${s.firstName}">TS</td>
+					<td th:text="${s.lastName}">B</td>
+					<td th:utext="${s.description}">안녕하세요 BTS입니다</td>
+				</tr>
+			</table>
+			<table id="table2" class="table table-striped">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Description</th>
+				</tr>
+				<tr th:each="s : ${singers}">
+					<td th:text="${s.firstName}">TS</td>
+					<td th:text="${s.lastName}">B</td>
+					<td th:utext="${s.description}">안녕하세요 BTS입니다</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<table id="table3" class="table table-striped">
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Description</th>
+					</tr>
+			</table>
+		</div>
+		</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

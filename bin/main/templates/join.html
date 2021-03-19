@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원 가입</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1//css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{css/joincss.css}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+<script type="text/javascript">
+	function checkValue() {
+		if(!document.userInfo.id.value){
+			alert("아이디를 입력하세요.");
+			return false;
+		}
+		
+		if(!document.userInfo.password.value){
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+		
+		if(!document.userInfo.passwordcheck.value){
+			alert("비밀번호가 동일한지 확인해 주세요.");
+			return false;
+		}
+		
+		if(document.userInfo.password.value != document.userInfo.passwordcheck.value){
+			alert("비밀번호를 동일하게 입력하세요.");
+			return false;
+		}
+		
+		if(!document.userInfo.name.value){
+			alert("이름을 입력해 주세요.");
+			return false;
+		}
+		
+		if(!document.userInfo.birth.value){
+			alert("생년월일을 입력해 주세요.");
+			return false;
+		}
+		
+		if(!document.userInfo.email1.value){
+			alert("이메일을 입력해 주세요.");
+			return false;
+		}
+	}
+	
+	
+	function email_change(){
+
+		  if(document.userInfo.email.options[document.userInfo.email.selectedIndex].value == '0'){
+		   document.userInfo.email2.disabled = true;
+		   document.userInfo.email2.value = "";
+		  }
+
+		  if(document.userInfo.email.options[document.userInfo.email.selectedIndex].value == '9'){
+		   document.userInfo.email2.disabled = false;
+		   document.userInfo.email2.value = "";
+		   document.userInfo.email2.focus();
+		  } else{
+		   document.userInfo.email2.disabled = true;
+		   document.userInfo.email2.value = document.userInfo.email.options[document.userInfo.email.selectedIndex].value;
+		  }
+		  
+		 }
+	
+</script> 
+
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}">Header</div>
+	
+	<h1 align="middle">회원 정보 입력</h1>
+	
+	<div id="contents">
+	<div id="wrap">
+		<form method="post" action="../pro/JoinPro.jsp"
+			  name="userInfo" onsubmit="return checkValue()">
+		<table>
+        	<tr>
+	            <td id="title">아이디</td>
+	            <td>
+	                <input type="text" name="id" maxlength="50">
+	                <input type="button" value="중복확인" >    
+	            </td>
+            </tr>
+                        
+            <tr>
+                <td id="title">비밀번호</td>
+                <td>
+                    <input type="password" name="password" maxlength="50">
+                </td>
+            </tr>
+            
+            <tr>
+                <td id="title">비밀번호 확인</td>
+                <td>
+                    <input type="password" name="passwordcheck" maxlength="50">
+                </td>
+            </tr>
+                
+            <tr>
+                <td id="title">이름</td>
+                <td>
+                    <input type="text" name="name" maxlength="50">
+                </td>
+            </tr>
+                
+            <tr>
+                <td id="title">성별</td>
+                <td>
+                    <input type="radio" name="gender" value="남" checked>남
+                    <input type="radio" name="gender" value="여" checked>여
+                </td>
+            </tr>
+                
+            <tr>
+                <td id="title">생일</td>
+                <td>
+                    <input type="date" name="birth">
+                </td>
+            </tr>
+                
+            <tr>
+                <td id="title">이메일</td>
+                <td id=join>
+					<input type="text" name="email1" value="이메일" onfocus="this.value='';">   @
+					<input type="text" name="email2" value="" disabled >
+					<select name="email" onchange="email_change()">
+					    <option value="0" >선택하세요</option>
+					    <option value="naver.com">naver.com</option>
+					    <option value="nate.com">nate.com</option>
+					    <option value="gmail.com">gmail.com</option>
+					    <option value="9">직접입력</option>  
+					</select>
+                </td>
+            </tr>
+   		</table>
+   		<br>
+ 		</form>
+	</div>
+	</div>
+   			<div align="middle">
+       		<input type="submit" value="가입"/><input type="button" value="취소">
+ 			</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

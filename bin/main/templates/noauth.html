@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Singer</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
+
+<!-- Jquery -->
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}">Header</div>
+	<div class="container">
+	<h1>Singer 권한 없음</h1>
+	<div>
+		<h1>권한이 없습니다.</h1>
+	</div>
+	<div th:replace="~{fragments/footer :: footer}"> (c) 2021 AReum Kim Company Ltd. </div>
+	</div>
+</body>
+</html>

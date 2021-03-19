@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+<!-- CKEditor -->
+<script th:src="@{/ckeditor/ckeditor.js}"></script>
+<script th:src="@{/ckeditor/adapters/jquery.js}"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#singerDescription").ckeditor(
+			{
+				toolbar : 'basic',
+				uiColor : '#CCCCCC'		
+			}
+		);
+	});
+</script>
+
+<title>Detail/Update/Add Singer</title>
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}">Header</div>
+	<div class="container">
+		<h1>Detail/Update/Add Singer</h1>
+		<div>
+			<form class="form-horizontal" th:object="${singer}" th:action="@{/singers}" method="post" enctype="multipart/form-data">
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">이름 </label>
+					<div class="col-sm-10">
+						<input class="form-control" th:field="*{firstName}"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">성 </label>
+					<div class="col-sm-10">
+						<input class="form-control" th:field="*{lastName}"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">생년월일 </label>
+					<div class="col-sm-10">
+						<input class="form-control" th:field="*{birthDate}"/>
+						<p>'YYYY-MM-DD' 형식으로 입력바랍니다.</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">가수 소개 </label>
+					<div class="col-sm-10">
+						<textarea class="form-control" th:text="*{description}"
+								  id="singerDescription" name="description"></textarea>
+						
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">사진 첨부 </label>
+					<div class="col-sm-10">
+						<input class="form-control" type="file" name="photo2" />
+					</div>
+				</div>
+				<div class="row" style="float: right;">
+					<button class="btn btn-default" name="update">저장</button>
+					<button class="btn btn-danger" name="delete">삭제</button>
+				</div>
+			</form>
+		</div>
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</div>
+</body>
+</html>

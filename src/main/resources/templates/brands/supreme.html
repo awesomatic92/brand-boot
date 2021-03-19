@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Supreme</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1//css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{css/maincss.css}">
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+<title>Supreme Info</title>
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: header}">Header</div>
+ 	 	
+ 	<div>
+ 		<h1 align="middle">Supreme</h1>
+ 		
+ 		<div> <img width="300px" alt="" th:src="@{'images/1.png'}"> </div>
+ 		<div align="right">오</div>
+ 		
+ 		
+ 		
+ 		<table>
+ 			<tr>
+ 			<td> <img alt="" src="@{'images/1.png'}"> </td>
+ 			<td> </td>
+ 			</tr>
+ 		</table>
+ 		
+ 		
+ 			
+ 		
+ 		
+ 	</div>
+ 	
+ 	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

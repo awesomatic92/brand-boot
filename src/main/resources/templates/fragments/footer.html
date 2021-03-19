@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Singers</title>
+<!-- 절대 경로 명시하기 위해 th 서술, 접근을 위해 @{} -->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div th:fragment="footer" align="center">
+			<p>
+				Copyright (c) 2021 Sanghoon Lee. All rights reserved.
+			</p>
+		</div>
+	</div>
+</body>
+</html>
